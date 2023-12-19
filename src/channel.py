@@ -33,3 +33,10 @@ class Channel:
         channel_id = 'UCwHL6WHUarjGfUM_586me8w'  # HighLoad Channel
         channel = Channel.youtube.channels().list(id=channel_id, part='snippet,statistics').execute()
         Channel.printj(channel)
+
+
+    @classmethod
+    def get_service(cls):
+        """Возвращает объект для работы с YouTube API"""
+
+        return Channel.youtube
