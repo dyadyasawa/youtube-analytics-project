@@ -40,3 +40,22 @@ class Channel:
         """Возвращает объект для работы с YouTube API"""
 
         return Channel.youtube
+
+
+    def to_json(self, file):
+        """Сохраняет в файл значения атрибутов экземпляра"""
+
+        dict_attr = {
+                      'channel_id' :  self.channel_id,
+                      'title' : self.title,
+                      'description' : self.description,
+                      'url' : self.url,
+                      'subscribers_count' : self.subscribers_count,
+                      'video_count' : self.video_count,
+                      'total_view_count' : self.total_view_count
+        }
+
+        with open(file, 'w', encoding='utf-8') as f:
+            json_file = json.dump(dict_attr, f, indent=2, ensure_ascii=False)
+            return json_file
+
