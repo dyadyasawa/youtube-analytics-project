@@ -24,47 +24,47 @@ class Channel:
 
 
     def __str__(self):
-        """"""
+        """Выводит данные для пользователя (необходимые по мнению программиста)"""
 
         return f'{self.title} ({self.url})'
 
 
     def __add__(self, other):
-        """"""
+        """Магический метод, возвращающий сложение '+'"""
 
         return int(self.video_count) + int(other.video_count)
 
 
     def __sub__(self, other):
-        """"""
+        """Магический метод, возвращающий разность '-'"""
 
         return int(self.video_count) - int(other.video_count)
 
 
     def __gt__(self, other):
-        """"""
+        """Магический метод, возвращающий сравнение '>'"""
 
         return int(self.video_count) > int(other.video_count)
 
     def __ge__(self, other):
-        """"""
+        """Магический метод, возвращающий сравнение '>='"""
 
         return int(self.video_count) >= int(other.video_count)
 
 
     def __lt__(self, other):
-        """"""
+        """Магический метод, возвращающий сравнение '<'"""
 
         return int(self.video_count) < int(other.video_count)
 
 
     def __le__(self, other):
-        """"""
+        """Магический метод, возвращающий сравнение '<='"""
         return int(self.video_count) <= int(other.video_count)
 
 
     def __eq__(self, other):
-        """"""
+        """Магический метод, возвращающий сравнение '=='"""
 
         return int(self.video_count) == int(other.video_count)
 
