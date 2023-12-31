@@ -42,3 +42,22 @@ class PlayList:
                 duration = isodate.parse_duration(iso_8601_duration)
                 total_time += duration
             return total_time
+
+        def show_best_video(self):
+            """ Возвращает ссылку на самое популярное видео из плейлиста """
+
+            video_ids: list[str] = [video['contentDetails']['videoId'] for video in self.playlist_videos['items']]
+            video_response = Channel.youtube.videos().list(part='statistics',
+                                                           id=','.join(video_ids)
+                                                           ).execute()
+            dict_ = video_response['items']
+
+            like_count = 0
+            vid_id = ''
+            for item in range(4):
+
+                if int(dict_[item]['statistics']['likeCount']) >= like_count:
+                    like_count = int(dict_[item]['statistics']['likeCount'])
+
+                    vid_id = dict_[item]['id']
+            return f'https://youtu.be/{vid_id}'
