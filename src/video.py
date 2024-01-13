@@ -3,11 +3,18 @@ class Video:
     def __init__(self, video_id: str) -> None:
         """ Экземпляр инициализируется id видео. Дальше все данные будут подтягиваться по API. """
         self.video_id = video_id
-        self.channel = Channel.youtube.videos().list(part='snippet,statistics,contentDetails,topicDetails', id=video_id).execute()['items'][0]
-        self.title = self.channel['snippet']['title']
-        self.url = self.channel['snippet']['thumbnails']['default']['url']
-        self.total_view_count = self.channel['statistics']['viewCount']
-        self.likes_count = self.channel['statistics']['likeCount']
+        try:
+            self.channel = Channel.youtube.videos().list(part='snippet,statistics,contentDetails,topicDetails', id=video_id).execute()['items'][0]
+        except IndexError:
+            self.title = None
+            self.url = None
+            self.total_view_count = None
+            self.likes_count = None
+        else:
+            self.title = self.channel['snippet']['title']
+            self.url = self.channel['snippet']['thumbnails']['default']['url']
+            self.total_view_count = self.channel['statistics']['viewCount']
+            self.likes_count = self.channel['statistics']['likeCount']
     def __str__(self):
         """ Реализует вывод необходимой информации по экземпляру класса. """
         return f'{self.title}'
